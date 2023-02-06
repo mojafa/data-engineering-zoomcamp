@@ -3,12 +3,14 @@
 ###
 name: Parameterized ETL
 description: null
-version: 069b00845abcb3eeeff506a311413184
+version: 8f52a382cd6a571c8e49d2e568b407e4
 # The work queue that will handle this deployment's runs
 work_queue_name: default
+work_pool_name: null
 tags: []
-parameters: { "color": "yellow", "months" :[1, 2, 3], "year": 2021}
+parameters: {"color":"yellow", "months":[1,2,3], "year":2021}
 schedule: null
+is_schedule_active: null
 infra_overrides: {}
 infrastructure:
   type: process
@@ -20,6 +22,7 @@ infrastructure:
   working_dir: null
   block_type_slug: process
   _block_type_slug: process
+  
 
 ###
 ### DO NOT EDIT BELOW THIS LINE
@@ -27,7 +30,7 @@ infrastructure:
 flow_name: etl-parent-flow
 manifest_path: null
 storage: null
-path: C:\Users\Marcos\Downloads\DataEngineeringBootcamp\week2
+path: /Users/jafa/Developer/data-engineering-zoomcamp/week_2_workflow_orchestration/flows/02_gcp
 entrypoint: parameterized_flows.py:etl_parent_flow
 parameter_openapi_schema:
   title: Parameters
@@ -54,3 +57,4 @@ parameter_openapi_schema:
       type: string
   required: null
   definitions: null
+timestamp: '2023-02-05T10:06:14.641422+00:00'

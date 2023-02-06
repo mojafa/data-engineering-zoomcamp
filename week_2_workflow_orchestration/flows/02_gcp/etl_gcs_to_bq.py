@@ -7,11 +7,11 @@ from prefect_gcp import GcpCredentials
 @task(retries=3)
 def extract_from_gcs(color, year, month) -> Path:
     """Data Extract from Google Cloud Storage"""
-    gcs_path = f"{color}/{color}_tripdata_{year}-{month:02}.parquet"
-    gcs_block = GcsBucket.load("zoom-gcs")
+    gcs_path = f"../../data/{color}/{color}_tripdata_{year}-{month:02}.parquet"
+    gcs_block = GcsBucket.load("dezoomcamp")
     gcs_block.get_directory(from_path=gcs_path, local_path=f"data/")
     print(gcs_path)
-    return Path(f"data/{gcs_path}")
+    return Path(f"{gcs_path}")
 
 @task()
 def transform(path) -> pd.DataFrame:
@@ -26,11 +26,11 @@ def transform(path) -> pd.DataFrame:
 def write_bq(df) -> None:
     """Write DataFrame to BigQuery"""
 
-    gcp_credentials_block = GcpCredentials.load("zoom-gcp-creds")
+    gcp_credentials_block = GcpCredentials.load("dezoomcamp-gcp-creds")
 
     df.to_gbq(
-        destination_table="dezoomcamp.rides",
-        project_id="digital-aloe-375022",
+        destination_table="trips_data_all.rides",
+        project_id="smart-grin-376216",
         credentials=gcp_credentials_block.get_credentials_from_service_account(),
         chunksize=500_000,
         if_exists="append"
@@ -39,7 +39,7 @@ def write_bq(df) -> None:
 @flow()
 def etl_gcs_to_bq():
     color = "yellow"
-    year  = 2021
+    year  = 2020
     month = 1
 
     path = extract_from_gcs(color, year, month)
