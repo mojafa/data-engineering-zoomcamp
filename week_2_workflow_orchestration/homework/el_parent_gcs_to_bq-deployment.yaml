@@ -1,0 +1,62 @@
+###
+### A complete description of a Prefect Deployment for flow 'el-parent-gcs-to-bq'
+###
+name: de-hw-3
+description: Main EL flow to load data into Big Query
+version: e010b831e9d0bc2eb32709dda4f174df
+# The work queue that will handle this deployment's runs
+work_queue_name: default
+work_pool_name: default-agent-pool
+tags: []
+parameters: {}
+schedule: null
+is_schedule_active: true
+infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: el-parent-gcs-to-bq
+manifest_path: null
+infrastructure:
+  type: process
+  env: {}
+  labels: {}
+  name: null
+  command: null
+  stream_output: true
+  working_dir: null
+  _block_document_id: f9b281ad-f098-4bed-9501-8b371e3d0ece
+  _block_document_name: anonymous-2cb4288e-d7b5-4e90-b271-6251a785b15b
+  _is_anonymous: true
+  block_type_slug: process
+  _block_type_slug: process
+storage: null
+path: /Users/jafa/Developer/data-engineering-zoomcamp/week_2_workflow_orchestration/homework
+entrypoint: etl_gcs_to_bq.py:el_parent_gcs_to_bq
+parameter_openapi_schema:
+  title: Parameters
+  type: object
+  properties:
+    months:
+      title: months
+      default:
+      - 1
+      - 2
+      position: 0
+      type: array
+      items:
+        type: integer
+    year:
+      title: year
+      default: 2021
+      position: 1
+      type: integer
+    color:
+      title: color
+      default: yellow
+      position: 2
+      type: string
+  required: null
+  definitions: null
+timestamp: '2023-02-25T11:35:58.818848+00:00'
