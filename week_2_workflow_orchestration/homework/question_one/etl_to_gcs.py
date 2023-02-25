@@ -27,7 +27,7 @@ def transform_data(df):
 
 @task(log_prints=True)
 def export_data_local(df, color, dataset_file):
-    path = Path(f"../../data/{color}/{dataset_file}.parquet")
+    path = Path(f"./data/{color}/{dataset_file}.parquet")
     df.to_parquet(path, compression="gzip")
     return path
 
