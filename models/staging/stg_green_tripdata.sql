@@ -1,6 +1,8 @@
 {{ config(materialized="view") }}
 
 select
+    -- Usage of a macro from a package
+    {{ dbt_utils.surrogate_key(['vendorid', 'lpep_pickup_datetime']) }} as tripid,
     -- identifiers
     cast(vendorid as integer) as vendorid,
     cast(ratecodeid as integer) as ratecodeid,
@@ -27,7 +29,9 @@ select
     cast(improvement_surcharge as numeric) as improvement_surcharge,
     cast(total_amount as numeric) as total_amount,
     cast(payment_type as integer) as payment_type,
+    {{ get_payment_type_description('payment_type') }} as payment_type_description,
     cast(congestion_surcharge as numeric) as congestion_surcharge
 
+       
 from {{ source('staging', 'green_tripdata') }}
 limit 100
