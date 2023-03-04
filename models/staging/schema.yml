@@ -6,8 +6,7 @@ sources:
       #For bigquery:
       database: smart-grin-376216
 
-
-      # For postgres:
+      # # For postgres:
       # database: production
 
       schema: trips_data_all
@@ -202,4 +201,3 @@ models:
             description: Total amount of all tolls paid in trip.
           - name: Total_amount 
             description: The total amount charged to passengers. Does not include cash tips.
-
