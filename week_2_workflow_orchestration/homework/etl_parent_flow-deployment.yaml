@@ -6,12 +6,18 @@ description: null
 version: e1cbbc067b06a43eba9331f0075f6ce0
 # The work queue that will handle this deployment's runs
 work_queue_name: default
-work_pool_name: null
+work_pool_name: default-agent-pool
 tags: []
 parameters: {}
 schedule: null
-is_schedule_active: null
+is_schedule_active: true
 infra_overrides: {}
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: etl-parent-flow
+manifest_path: null
 infrastructure:
   type: process
   env: {}
@@ -20,14 +26,11 @@ infrastructure:
   command: null
   stream_output: true
   working_dir: null
+  _block_document_id: b6b5cfa8-4a55-4196-ac71-58e6c86b458e
+  _block_document_name: anonymous-92b10474-7a18-47c2-a9c8-075d919c61eb
+  _is_anonymous: true
   block_type_slug: process
   _block_type_slug: process
-
-###
-### DO NOT EDIT BELOW THIS LINE
-###
-flow_name: etl-parent-flow
-manifest_path: null
 storage:
   repository: https://github.com/mojafa/data-engineering-zoomcamp
   reference: null
@@ -65,4 +68,4 @@ parameter_openapi_schema:
       type: string
   required: null
   definitions: null
-timestamp: '2023-02-25T11:55:25.267504+00:00'
+timestamp: '2023-02-25T11:59:22.073065+00:00'

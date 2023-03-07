@@ -1,23 +1,17 @@
 ###
 ### A complete description of a Prefect Deployment for flow 'etl-parent-flow'
 ###
-name: Parameterized ETL
+name: Parameterized ETL2
 description: null
-version: 058a3d002fdbafdc8c67b05f0fda6dff
+version: 64fbad4b7427b7c3a2981b12099a4c5f
 # The work queue that will handle this deployment's runs
 work_queue_name: default
-work_pool_name: default-agent-pool
+work_pool_name: null
 tags: []
-parameters: {}
+parameters: {"color":"yellow", "months": [6,4,5], "year": 2020}
 schedule: null
-is_schedule_active: true
+is_schedule_active: null
 infra_overrides: {}
-
-###
-### DO NOT EDIT BELOW THIS LINE
-###
-flow_name: etl-parent-flow
-manifest_path: null
 infrastructure:
   type: process
   env: {}
@@ -26,11 +20,14 @@ infrastructure:
   command: null
   stream_output: true
   working_dir: null
-  _block_document_id: 64a22e53-adc1-4ae4-aaee-54cf3e39cff7
-  _block_document_name: anonymous-cb79920a-a194-486a-a369-0ed15e82fd02
-  _is_anonymous: true
   block_type_slug: process
   _block_type_slug: process
+
+###
+### DO NOT EDIT BELOW THIS LINE
+###
+flow_name: etl-parent-flow
+manifest_path: null
 storage: null
 path: /Users/jafa/Developer/data-engineering-zoomcamp/week_2_workflow_orchestration/flows/03_deployments
 entrypoint: parameterized_flow.py:etl_parent_flow
@@ -59,4 +56,4 @@ parameter_openapi_schema:
       type: string
   required: null
   definitions: null
-timestamp: '2023-02-24T07:57:10.688382+00:00'
+timestamp: '2023-02-25T09:50:25.253336+00:00'
