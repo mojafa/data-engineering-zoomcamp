@@ -30,3 +30,6 @@ logs/
 # end dbt Cloud content
 
 /week_5_batch_processing/code/data/
+/week_5_batch_processing/code/tmp/
+/week_5_batch_processing/code/zones/
+/week_5_batch_processing/code/fhvhv/
