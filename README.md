@@ -26,4 +26,4 @@ See [data-engineering-zoomcamp](https://github.com/DataTalksClub/data-engineerin
 
 See also [Data Engineering Zoomcamp 2023 Playlist](https://www.youtube.com/watch?v=-zpVha7bw5A&list=PL3MmuxUbc_hJed7dXYoJw8DoCuVHhGEQb) on Youtube.
 
-Last updated: March 7, 2023
+Last updated: March 13, 2023
