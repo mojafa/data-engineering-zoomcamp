@@ -20,8 +20,8 @@ import java.util.stream.Collectors;
 public class JsonProducer {
     //The JsonProducer class contains de getRides() method that reads a CSV file and return a list of Ride.
     private Properties props = new Properties();
+    // KafkaProducer is a Kafka client that publishes records to the Kafka cluster.
 
-    private Properties props = new Properties();
     public JsonProducer() {
         props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "pkc-75m1o.europe-west3.gcp.confluent.cloud:9092");
         props.put("security.protocol", "SASL_SSL");
