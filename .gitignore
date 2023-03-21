@@ -18,7 +18,7 @@ data_pgadmin/
 **.env
 **__pycache__/
 .history
-
+*.jar
 serving_dir
 *.csv
 .ipynb_checkpoints/
@@ -31,5 +31,12 @@ logs/
 
 /week_5_batch_processing/code/data/
 /week_5_batch_processing/code/tmp/
+/week_5_batch_processing/code/zone_lookup/
 /week_5_batch_processing/code/zones/
+/week_5_batch_processing/code/lib
 /week_5_batch_processing/code/fhvhv/
+/week_5_batch_processing/code/fhvfhv/
+/week_5_batch_processing/code/spark-warehouse/
+/week_5_batch_processing/code/.ipynb_checkpoints/
+/week_5_batch_processing/code/.idea/
+*.csv.*
