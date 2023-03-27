@@ -1,11 +1,11 @@
 ## Running Spark in the Cloud
 
-### Connecting to Google Cloud Storage 
+### Connecting to Google Cloud Storage
 
 Uploading data to GCS:
 
 ```bash
-gsutil -m cp -r pq/ gs://dtc_data_lake_de-zoomcamp-nytaxi/pq
+gsutil -m cp -r pq/ gs://dtc_data_lake_smart-grin-37621/pq
 ```
 
 Download the jar for connecting to GCS to any location (e.g. the `lib` folder):
@@ -45,7 +45,7 @@ jupyter nbconvert --to=script 06_spark_sql.ipynb
 
 Edit the script and then run it:
 
-```bash 
+```bash
 python 06_spark_sql.py \
     --input_green=data/pq/green/2020/*/ \
     --input_yellow=data/pq/yellow/2020/*/ \
@@ -75,23 +75,24 @@ TODO
 
 Params for the job:
 
-* `--input_green=gs://dtc_data_lake_de-zoomcamp-nytaxi/pq/green/2021/*/`
-* `--input_yellow=gs://dtc_data_lake_de-zoomcamp-nytaxi/pq/yellow/2021/*/`
-* `--output=gs://dtc_data_lake_de-zoomcamp-nytaxi/report-2021`
+* `--input_green=gs://dtc_data_lake_smart-grin-376216/pq/green/2021/*`
+* `--input_yellow=gs://dtc_data_lake_smart-grin-376216/pq/yellow/2021/*`
+* `--output=gs://dtc_data_lake_smart-grin-376216/report-2021`
 
-
+dtc_data_lake_smart-grin-376216/pq/green/2021
 Using Google Cloud SDK for submitting to dataproc
 ([link](https://cloud.google.com/dataproc/docs/guides/submit-job#dataproc-submit-job-gcloud))
 
 ```bash
 gcloud dataproc jobs submit pyspark \
-    --cluster=de-zoomcamp-cluster \
-    --region=europe-west6 \
-    gs://dtc_data_lake_de-zoomcamp-nytaxi/code/06_spark_sql.py \
+    --cluster=dezoomcamp \
+    --region=us-central1 \
+    gs://dtc_data_lake_smart-grin-376216/code/06_spark_sql.py \
     -- \
-        --input_green=gs://dtc_data_lake_de-zoomcamp-nytaxi/pq/green/2020/*/ \
-        --input_yellow=gs://dtc_data_lake_de-zoomcamp-nytaxi/pq/yellow/2020/*/ \
-        --output=gs://dtc_data_lake_de-zoomcamp-nytaxi/report-2020
+        --input_green=gs://dtc_data_lake_smart-grin-376216/pq/green/2020/\* \
+        --input_yellow=gs://dtc_data_lake_smart-grin-376216/pq/yellow/2020/\* \
+        --output=gs://dtc_data_lake_smart-grin-376216/report-2020
+
 ```
 
 ### Big Query
@@ -106,13 +107,22 @@ Write results to big query ([docs](https://cloud.google.com/dataproc/docs/tutori
 
 ```bash
 gcloud dataproc jobs submit pyspark \
-    --cluster=de-zoomcamp-cluster \
-    --region=europe-west6 \
+    --cluster=dezoomcamp\
+    --region=us-central1 \
     --jars=gs://spark-lib/bigquery/spark-bigquery-latest_2.12.jar \
-    gs://dtc_data_lake_de-zoomcamp-nytaxi/code/06_spark_sql_big_query.py \
+    gs://dtc_data_lake_smart-grin-376216/code/06_spark_sql_big_query.py \
     -- \
-        --input_green=gs://dtc_data_lake_de-zoomcamp-nytaxi/pq/green/2020/*/ \
-        --input_yellow=gs://dtc_data_lake_de-zoomcamp-nytaxi/pq/yellow/2020/*/ \
+        --input_green=gs://dtc_data_lake_smart-grin-376216/pq/green/2020/\* \
+        --input_yellow=gs://dtc_data_lake_smart-grin-376216/pq/yellow/2020/\* \
         --output=trips_data_all.reports-2020
 ```
+gcloud dataproc jobs wait job-8326deb5 --project smart-grin-376216 --region us-central1
 
+gcloud dataproc jobs submit pyspark \
+    --cluster=dezoomcamp \
+    --region=us-central1 \
+    gs://dtc_data_lake_smart-grin-376216/code/06_spark_sql.py \
+    -- \
+        --input_green=gs://dtc_data_lake_smart-grin-376216/pq/green/2020/\* \
+        --input_yellow=gs://dtc_data_lake_smart-grin-376216/pq/yellow/2020/\* \
+        --output=gs://dtc_data_lake_smart-grin-376216/report-2020
