@@ -25,7 +25,8 @@ spark = SparkSession.builder \
     .appName('test') \
     .getOrCreate()
 
-spark.conf.set('temporaryGcsBucket', 'dataproc-temp-europe-west6-828225226997-fckhkym8')
+bucket = "dataproc-temp-us-central1-327384724725-la17ucyb"
+spark.conf.set('temporaryGcsBucket', bucket)
 
 df_green = spark.read.parquet(input_green)
 
@@ -79,13 +80,13 @@ df_trips_data.registerTempTable('trips_data')
 
 
 df_result = spark.sql("""
-SELECT 
-    -- Reveneue grouping 
+SELECT
+    -- Reveneue grouping
     PULocationID AS revenue_zone,
-    date_trunc('month', pickup_datetime) AS revenue_month, 
-    service_type, 
+    date_trunc('month', pickup_datetime) AS revenue_month,
+    service_type,
 
-    -- Revenue calculation 
+    -- Revenue calculation
     SUM(fare_amount) AS revenue_monthly_fare,
     SUM(extra) AS revenue_monthly_extra,
     SUM(mta_tax) AS revenue_monthly_mta_tax,
@@ -108,7 +109,3 @@ GROUP BY
 df_result.write.format('bigquery') \
     .option('table', output) \
     .save()
-    
-
-
-
