@@ -1,4 +1,4 @@
-package java.org.example;
+package org.example;
 
 import com.opencsv.CSVReader;
 import com.opencsv.exceptions.CsvException;
@@ -14,16 +14,10 @@ import java.util.Properties;
 import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 
-//Remember that Java streams enable functional-style operations on streams of elements.
-//A stream is an abstraction of a non-mutable collection of functions applied in some order to the data. A stream is not a collection where you can store elements.
-
 public class JsonProducer {
-    //The JsonProducer class contains de getRides() method that reads a CSV file and return a list of Ride.
     private Properties props = new Properties();
-    // KafkaProducer is a Kafka client that publishes records to the Kafka cluster.
-
     public JsonProducer() {
-        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "pkc-75m1o.europe-west3.gcp.confluent.cloud:9092");
+        props.put(StreamsConfig.BOOTSTRAP_SERVERS_CONFIG, "pkc-l6wr6.europe-west2.gcp.confluent.cloud:9092");
         props.put("security.protocol", "SASL_SSL");
         props.put("sasl.jaas.config", "org.apache.kafka.common.security.plain.PlainLoginModule required username='"+Secrets.KAFKA_CLUSTER_KEY+"' password='"+Secrets.KAFKA_CLUSTER_SECRET+"';");
         props.put("sasl.mechanism", "PLAIN");
@@ -33,6 +27,7 @@ public class JsonProducer {
         props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, "org.apache.kafka.common.serialization.StringSerializer");
         props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, "io.confluent.kafka.serializers.KafkaJsonSerializer");
     }
+
 
     public List<Ride> getRides() throws IOException, CsvException {
         var ridesStream = this.getClass().getResource("/rides.csv");
